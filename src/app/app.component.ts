@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from './interfaz';
-import { UsersService } from './services/users.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,29 +7,16 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Service Rest';
+  constructor() {}
 
-  constructor(private userService: UsersService) {
-    console.log('constructor');
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit');
-    this.userService.getUsers().subscribe((data: Usuario[]) => {
-      console.log(data);
-    });
-  }
+  profileForm = new FormGroup({
+    name: new FormControl(''),
+    mail: new FormControl(''),
+  });
 
-  createUser() {
-    const user: Usuario = {
-      name: 'string',
-      apellido: 'string',
-      email: 'string',
-      telefono: 123,
-      plan: 'string',
-    };
-    this.userService.createUser(user).subscribe((data: Usuario) => {
-      console.log(data);
-    });
+  onSubmit() {
+    console.log(this.profileForm.value);
   }
 }

@@ -1,4 +1,5 @@
-<form action="post">
-  <input type="text" />
-  <button (click)="createUser()">Click Me!</button>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" />
+  <input type="text" formControlName="mail" />
+  <button type="submit">Submit</button>
 </form>
